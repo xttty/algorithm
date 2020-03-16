@@ -9,7 +9,7 @@ func TestBRTree(t *testing.T) {
 	// root := tree.BinaryNode{
 	// 	Val: 100,
 	// }
-	root := tree.BlackRedTreeRoot(100)
+	root := tree.RedBlackTreeRoot(100)
 	root, _ = root.Add(10)
 	root, _ = root.Add(60)
 	root, _ = root.Add(160)

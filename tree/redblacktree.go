@@ -3,25 +3,25 @@ package tree
 const red = true
 const black = false
 
-// BRNode 红黑树节点
-type BRNode struct {
+// RBNode 红黑树节点
+type RBNode struct {
 	Val    int
-	Left   *BRNode
-	Right  *BRNode
-	Parent *BRNode
+	Left   *RBNode
+	Right  *RBNode
+	Parent *RBNode
 	color  bool
 }
 
-// BlackRedTreeRoot 创建红黑树祖节点
-func BlackRedTreeRoot(value int) *BRNode {
-	return &BRNode{
+// RedBlackTreeRoot 创建红黑树祖节点
+func RedBlackTreeRoot(value int) *RBNode {
+	return &RBNode{
 		Val:   value,
 		color: black,
 	}
 }
 
 // Search 红黑树查找
-func (root *BRNode) Search(value int) *BRNode {
+func (root *RBNode) Search(value int) *RBNode {
 	node := root
 	for node != nil {
 		if node.Val == value {
@@ -36,9 +36,9 @@ func (root *BRNode) Search(value int) *BRNode {
 }
 
 // Add 红黑树的插入
-func (root *BRNode) Add(value int) (*BRNode, bool) {
+func (root *RBNode) Add(value int) (*RBNode, bool) {
 	node := root
-	newNode := &BRNode{
+	newNode := &RBNode{
 		Val:   value,
 		color: red,
 	}
@@ -67,7 +67,7 @@ func (root *BRNode) Add(value int) (*BRNode, bool) {
 	return root, true
 }
 
-func (root *BRNode) fixAfterAdd(node *BRNode) *BRNode {
+func (root *RBNode) fixAfterAdd(node *RBNode) *RBNode {
 	for node != nil && node.Parent != nil && node.Parent.color == red {
 		if node.Parent.isLeftChild() { //父节点是左子节点
 			if node.Parent.Parent.Left != nil && node.Parent.Parent.Left.color == red && node.Parent.Parent.Right != nil && node.Parent.Parent.Right.color == red { //父节点和叔节点都是红色
@@ -118,7 +118,7 @@ func (root *BRNode) fixAfterAdd(node *BRNode) *BRNode {
 	return root
 }
 
-func (root *BRNode) leftRotation(node *BRNode) *BRNode {
+func (root *RBNode) leftRotation(node *RBNode) *RBNode {
 	changeRoot := false
 	if root == node {
 		changeRoot = true
@@ -144,7 +144,7 @@ func (root *BRNode) leftRotation(node *BRNode) *BRNode {
 	return root
 }
 
-func (root *BRNode) rightRotation(node *BRNode) *BRNode {
+func (root *RBNode) rightRotation(node *RBNode) *RBNode {
 	changeRoot := false
 	if root == node {
 		changeRoot = true
@@ -170,7 +170,7 @@ func (root *BRNode) rightRotation(node *BRNode) *BRNode {
 	return root
 }
 
-func (root *BRNode) isLeftChild() bool {
+func (root *RBNode) isLeftChild() bool {
 	if root.Parent == nil {
 		return false
 	}
