@@ -74,6 +74,9 @@ func (hr *HashRing) GetNode(key string) string {
 	n := sort.Search(hr.nodesList.Len(), func(i int) bool {
 		return hashValue <= hr.nodesList[i].nodeV
 	})
+	if n >= hr.nodesList.Len() && n < 0 {
+		n = 0
+	}
 	return hr.nodesList[n].nodeKey
 }
 
