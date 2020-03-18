@@ -54,17 +54,61 @@ func (root *BinaryNode) Add(value int) bool {
 }
 
 // Delete 排序二叉树删除
-func (root *BinaryNode) Delete(value int) bool {
+func (root *BinaryNode) Delete(value int) (*BinaryNode, bool) {
 	node := root.Search(value)
 	if node == nil {
-		return false
+		return root, false
 	}
-	if node.isLeftChild() {
-		node.Parent.Left = nil
+	return root.delete(node)
+}
+
+func (root *BinaryNode) delete(node *BinaryNode) (*BinaryNode, bool) {
+	if node.Right == nil && node.Left == nil {
+		if node.Parent != nil {
+			if node.isLeftChild() {
+				node.Parent.Left = nil
+			} else {
+				node.Parent.Right = nil
+			}
+		} else {
+			root = nil
+		}
+		node = nil
+	} else if node.Right == nil {
+		if node.Parent != nil {
+			if node.isLeftChild() {
+				node.Parent.Left = node.Left
+				node.Left.Parent = node.Parent
+			} else {
+				node.Parent.Right = node.Left
+				node.Left.Parent = node.Parent
+			}
+		} else {
+			root = node.Left
+		}
+		node = nil
+	} else if node.Left == nil {
+		if node.Parent != nil {
+			if node.isLeftChild() {
+				node.Parent.Left = node.Right
+				node.Right.Parent = node.Parent
+			} else {
+				node.Parent.Right = node.Left
+				node.Right.Parent = node.Parent
+			}
+		} else {
+			root = node.Right
+		}
+		node = nil
 	} else {
-		node.Parent.Right = nil
+		replaceNode := node.Right
+		for replaceNode.Left != nil {
+			replaceNode = replaceNode.Left
+		}
+		node.Val = replaceNode.Val
+		root, _ = root.delete(replaceNode)
 	}
-	return true
+	return root, true
 }
 
 func (root *BinaryNode) isLeftChild() bool {
