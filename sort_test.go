@@ -2,7 +2,9 @@ package algorithm_test
 
 import (
 	"algorithm"
+	"math/rand"
 	"testing"
+	"time"
 )
 
 func TestSort(t *testing.T) {
@@ -13,5 +15,7 @@ func TestSort(t *testing.T) {
 	// algorithm.SelectSort(nums)
 	// algorithm.MergeSort(nums)
 	algorithm.HeapSort(nums)
+	rand.Seed(time.Now().UnixNano())
+	t.Log(rand.Int() % 7)
 	t.Log(nums)
 }
