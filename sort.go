@@ -141,7 +141,7 @@ func HeapSort(nums []int) {
 
 func adjustHeap(nums []int, top, len int) {
 	temp := nums[top]
-	for i := top; i <= top+len/2-1; {
+	for i := top; i < top+len/2; {
 		child := i*2 + 1
 		if child+1 < len && nums[child+1] > nums[child] {
 			child++
