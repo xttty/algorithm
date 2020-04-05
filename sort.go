@@ -139,19 +139,20 @@ func HeapSort(nums []int) {
 	}
 }
 
-func adjustHeap(nums []int, top, len int) {
+func adjustHeap(nums []int, top, length int) {
 	temp := nums[top]
-	for i := top; i < top+len/2; {
+	i := top
+	for i < top+length/2 {
 		child := i*2 + 1
-		if child+1 < len && nums[child+1] > nums[child] {
+		if child+1 < length && nums[child+1] > nums[child] {
 			child++
 		}
-		if nums[child] > nums[i] {
+		if nums[child] > temp {
 			nums[i] = nums[child]
 			i = child
 		} else {
 			break
 		}
-		nums[i] = temp
 	}
+	nums[i] = temp
 }
