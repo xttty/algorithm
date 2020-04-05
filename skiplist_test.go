@@ -1,12 +1,11 @@
-package algorithm_test
+package algorithm
 
 import (
-	"algorithm"
 	"testing"
 )
 
 func TestSkipList(t *testing.T) {
-	head := algorithm.NewSkipList(100)
+	head := NewSkipList(100)
 	head = head.Add(15)
 	head = head.Add(151)
 	head = head.Add(34)

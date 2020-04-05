@@ -1,7 +1,6 @@
-package algorithm_test
+package algorithm
 
 import (
-	"algorithm"
 	"fmt"
 	"sync"
 	"testing"
@@ -9,7 +8,7 @@ import (
 )
 
 func TestPubSub(t *testing.T) {
-	pub := algorithm.NewPublisher(10, 3*time.Second)
+	pub := NewPublisher(10, 3*time.Second)
 	defer pub.Close()
 
 	strSub := pub.Subcrib(func(v interface{}) bool {

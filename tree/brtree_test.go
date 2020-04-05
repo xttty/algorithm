@@ -1,7 +1,6 @@
-package tree_test
+package tree
 
 import (
-	"algorithm/tree"
 	"testing"
 )
 
@@ -17,7 +16,7 @@ func TestBRTree(t *testing.T) {
 	// root.Add(200)
 	// root.Delete(110)
 
-	root := tree.RedBlackTreeRoot(100)
+	root := RedBlackTreeRoot(100)
 	node := root
 	root, _ = root.Add(10)
 	root, _ = root.Add(60)

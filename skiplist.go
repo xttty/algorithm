@@ -92,7 +92,7 @@ func (head *SkipNode) Delete(value int) *SkipNode {
 	}
 	tempNode := head
 	level := uint8(maxLevel)
-	for level > 0 {
+	for level > 0 && tempNode != nil {
 		level = tempNode.level
 		for level > node.level {
 			level--
