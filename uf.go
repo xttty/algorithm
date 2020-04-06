@@ -37,7 +37,9 @@ func (uf *UF) IsConnection(i, j int) bool {
 func (uf *UF) root(i int) (int, int) {
 	root, deep := i, 1
 	for root != uf.collection[root] {
+		temp := root
 		root = uf.collection[root]
+		uf.collection[temp] = uf.collection[root]
 		deep++
 	}
 	return root, deep
