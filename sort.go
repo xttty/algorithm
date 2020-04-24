@@ -131,7 +131,7 @@ func HeapSort(nums []int) {
 	len := len(nums)
 	// 构建大顶堆
 	for i := len/2 - 1; i >= 0; i-- {
-		adjustHeap(nums, i, len-i)
+		adjustHeap(nums, i, len)
 	}
 	for i := len - 1; i > 0; i-- {
 		nums[i], nums[0] = nums[0], nums[i]
@@ -141,9 +141,8 @@ func HeapSort(nums []int) {
 
 func adjustHeap(nums []int, top, length int) {
 	temp := nums[top]
-	i := top
-	for i < top+length/2 {
-		child := i*2 + 1
+	i, child := top, top*2+1
+	for ; child < length; child = child*2 + 1 {
 		if child+1 < length && nums[child+1] > nums[child] {
 			child++
 		}

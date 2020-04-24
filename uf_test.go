@@ -1,6 +1,8 @@
 package algorithm
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestUF(t *testing.T) {
 	uf := NewUF(10)
