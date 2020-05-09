@@ -227,7 +227,7 @@ func getLevel(cs Cards) (level, error) {
 	return l, nil
 }
 
-func buildPoker() Cards {
+func buildPoker(needShuffle bool) Cards {
 	all := make(Cards, 52)
 	idx := 0
 	for i := two; i <= ace; i++ {
@@ -237,10 +237,12 @@ func buildPoker() Cards {
 			idx++
 		}
 	}
-	// shuffle
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	for i, j := range r.Perm(len(all)) {
-		all[i], all[j] = all[j], all[i]
+	if needShuffle {
+		// shuffle
+		r := rand.New(rand.NewSource(time.Now().UnixNano()))
+		for i, j := range r.Perm(len(all)) {
+			all[i], all[j] = all[j], all[i]
+		}
 	}
 	return all
 }

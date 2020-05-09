@@ -3,7 +3,7 @@ package poker
 import "testing"
 
 func TestProbability(t *testing.T) {
-	poker := buildPoker()
+	poker := buildPoker(false)
 	cnt := 0
 	f := func(cs Cards) {
 		cnt++

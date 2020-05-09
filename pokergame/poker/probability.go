@@ -77,6 +77,7 @@ func getMaxCards(pool Cards) (Cards, error) {
 	return maxRes, nil
 }
 
+// TODO 迭代有问题
 func iterate(curCards, pool Cards, pos int, op cardsOperationFunc) {
 	if len(pool) < len(curCards) {
 		return
